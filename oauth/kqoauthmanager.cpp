@@ -22,10 +22,10 @@
  *  along with KQOAuth.  If not, see <http://www.gnu.org/licenses/>
  */
 #include <QtCore>
+#include <QDesktopServices>
 
 #include "kqoauthmanager.h"
 #include "kqoauthmanager_p.h"
-#include "bps/navigator.h"
 
 
 ////////////// Private d_ptr implementation ////////////////
@@ -438,7 +438,8 @@ void KQOAuthManager::getOauth2UserAuthorization(QUrl authorizationEndpoint, QStr
 		}
     }
     qDebug() << openWebPageUrl.toString();
-    navigator_invoke(openWebPageUrl.toString().toStdString().c_str(),0);
+    QDesktopServices.openUrl(openWebPageUrl);
+    //navigator_invoke(openWebPageUrl.toString().toStdString().c_str(),0);
 }
 
 QUrl KQOAuthManager::getUserAuthorizationUrl(QUrl authorizationEndpoint) {
@@ -473,7 +474,8 @@ void KQOAuthManager::getUserAuthorization(QUrl authorizationEndpoint) {
         // Open the user's default browser to the resource authorization page provided
         // by the service.
 
-        navigator_invoke(openWebPageUrl.toString().toStdString().c_str(),0);
+        QDesktopServices.openUrl(openWebPageUrl);
+        //navigator_invoke(openWebPageUrl.toString().toStdString().c_str(),0);
     }
 }
 
